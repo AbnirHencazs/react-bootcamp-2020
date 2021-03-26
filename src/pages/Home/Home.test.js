@@ -90,5 +90,12 @@ describe("Homa page", () => {
           </div>
         </nav>
       `)
+    });
+
+    test("renders VideoCarList component", () => {
+        render(<Home/>)
+        const VideoCardList = screen.getByTestId('VideoCardList')
+
+        expect( VideoCardList ).toBeInTheDocument()
     })
 })
