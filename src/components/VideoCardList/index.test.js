@@ -1,14 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import mockData from '../../youtube-videos-mock';
+import {items} from '../../youtube-videos-mock';
 import VideoCardList from './index';
 
-test('render video card list', () => {
-  render(<VideoCardList />);
+test('render video card list component', () => {
+  render(<VideoCardList videos={items} channel={items[0]} />);
 
-  let response = screen.getByText(mockData.items[1].snippet.title);
-  expect(response).toBeInTheDocument();
+  const VideoCards = screen.getByTestId('VideoCardList')
 
-  response = screen.getByText(mockData.items[2].snippet.title);
-  expect(response).toBeInTheDocument();
+  expect( VideoCards ).toBeInTheDocument()
 });
