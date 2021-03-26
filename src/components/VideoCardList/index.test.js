@@ -6,7 +6,15 @@ import VideoCardList from './index';
 test('render video card list component', () => {
   render(<VideoCardList videos={items} channel={items[0]} />);
 
-  const VideoCards = screen.getByTestId('VideoCardList')
+  const VideoCardListComponent = screen.getByTestId('VideoCardList')
 
-  expect( VideoCards ).toBeInTheDocument()
+  expect( VideoCardListComponent ).toBeInTheDocument()
 });
+
+test('renders a list of VideoCards', () => {
+  render(<VideoCardList videos={items} channel={items[0]}/>);
+
+  const VideoCards = screen.getAllByRole('article')
+
+  expect(VideoCards.length).toBeGreaterThanOrEqual(24)
+})
