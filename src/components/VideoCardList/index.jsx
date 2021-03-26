@@ -1,13 +1,12 @@
 import React from 'react';
 import VideoCard from '../VideoCard';
-import mockData from '../../youtube-videos-mock';
 
-const VideoCardList = () => {
-  const channelInfo = mockData.items[0];
+const VideoCardList = ({videos, channel}) => {
+  
   return (
-    <div className="container my-12 mx-auto px-4 md:px-12">
+    <div className="container my-12 mx-auto px-4 md:px-12" data-testid="VideoCardList">
       <div className="flex flex-wrap -mx-1 lg:-mx-4">
-        {mockData.items
+        {videos
           .filter(
             (video) =>
               // Exclude first item since its channel info
@@ -18,7 +17,8 @@ const VideoCardList = () => {
             <VideoCard
               key={video.id.videoId}
               snippet={video.snippet}
-              channelInfo={channelInfo}
+              channelInfo={channel}
+              data-testid="VideoCard"
             />
           ))}
       </div>
