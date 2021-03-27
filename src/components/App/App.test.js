@@ -1,14 +1,20 @@
 import React from 'react'
 import { screen, render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 import App from './index'
 
 describe("App component", () => {
     test("renders HomePage", () => {
-        render( <App/> )
-
-        const title = screen.getByRole("heading", {
-            name: "Awesome Video App - AVA"
-        })
-        expect( title ).toBeInTheDocument()
+        render( 
+            //https://reactrouter.com/web/api/MemoryRouter
+            <MemoryRouter>
+                <App/>
+            </MemoryRouter>
+        )
+        const VideoCardListComponent = screen.getByTestId("VideoCardList")
+        const NavbarComponent = screen.getByRole('navigation');
+        
+        expect( VideoCardListComponent ).toBeInTheDocument()
+        expect( NavbarComponent ).toBeInTheDocument()
     })
 })
