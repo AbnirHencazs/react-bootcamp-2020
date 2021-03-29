@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavBar from '../../components/Navbar';
 import VideoCardList from '../../components/VideoCardList';
-import {items} from '../../youtube-videos-mock'
+import useGapi from '../../hooks/useGapi';
 
 function HomePage() {
+  const {videos, getVideos} = useGapi("/videos")
+
+  useEffect( () => {
+    getVideos()
+  }, [])
+
   return (
     <>
       <NavBar />
       <VideoCardList
-        videos={items}
-        channel={items[0]} />
+        videos={videos}
+        channel={videos[0]} />
     </>
   );
 }
