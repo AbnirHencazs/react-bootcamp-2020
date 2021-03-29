@@ -14,7 +14,7 @@ describe("Custom hook useGapi", () => {
 
         await waitForNextUpdate()
     
-        expect( result.current.videos.mockData.items.length ).toBeGreaterThanOrEqual(24)
+        expect( result.current.videos.length ).toBeGreaterThanOrEqual(24)
     })
 })
 
