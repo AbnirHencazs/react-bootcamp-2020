@@ -2,6 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import {items} from '../../youtube-videos-mock';
 import { server } from '../../mocks/server';
+import { renderHook } from '@testing-library/react-hooks';
+import useGapi from '../../hooks/useGapi';
 import VideoCardList from './index';
 
 test('render video card list component', () => {
@@ -36,5 +38,22 @@ describe("VideoCardList component", () => {
 
     const VideoCards = screen.getAllByRole("article")
     expect( VideoCards.length ).toBeGreaterThanOrEqual(24)
+  })
+
+  test("Obtain videos from mws using useGapi custom hooks and render them in VideoCardList component", async () => {
+    const { result, waitForNextUpdate } = renderHook( () => useGapi("/videos") )
+
+    result.current.getVideos()
+    await waitForNextUpdate()
+
+    render( <VideoCardList
+              videos={result.current.videos.mockData.items}
+              channel={result.current.videos.mockData.items[0]}/> )
+
+    const VideoCardListComponent = screen.getByTestId("VideoCardList")
+    expect( VideoCardListComponent ).toBeInTheDocument()
+
+    const videoCards = screen.getAllByRole("article")
+    expect( videoCards.length ).toBeGreaterThanOrEqual(24)
   })
 }) 
