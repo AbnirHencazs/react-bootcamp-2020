@@ -47,8 +47,8 @@ describe("VideoCardList component", () => {
     await waitForNextUpdate()
 
     render( <VideoCardList
-              videos={result.current.videos.mockData.items}
-              channel={result.current.videos.mockData.items[0]}/> )
+              videos={result.current.videos}
+              channel={result.current.videos[0]}/> )
 
     const VideoCardListComponent = screen.getByTestId("VideoCardList")
     expect( VideoCardListComponent ).toBeInTheDocument()
