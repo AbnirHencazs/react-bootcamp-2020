@@ -8,7 +8,7 @@ const useGapi = (url) => {
             const response = await fetch(url)
             const data = await response.json()
 
-            setVideos(data)
+            setVideos(data.mockData.items)
         } catch (error) {
             console.log(error)
         }
