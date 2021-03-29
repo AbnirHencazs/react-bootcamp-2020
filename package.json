@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.4",
+    "@testing-library/react-hooks": "^5.1.0",
     "autoprefixer": "^9.8.6",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
