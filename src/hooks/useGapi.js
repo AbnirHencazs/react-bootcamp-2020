@@ -1,20 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-const useGapi = (url) => {
+const useGapi = (search) => {
+
     const [ videos, setVideos ] = useState([])
+    const { client, load } = window.gapi;
 
-    const getVideos = async () => {
+    useEffect( () => {
+        if( client === undefined ) return;
+        initGapi()
+    }, [ search, client] )
+
+    const initGapi = () => {
         try {
-            const response = await fetch(url)
-            const data = await response.json()
-
-            setVideos(data.mockData.items)
+            load('client', async () => {
+                await client.init({ apiKey: process.env.REACT_APP_APIKEY, })
+            })
         } catch (error) {
             console.log(error)
         }
     }
+    
+    const getVideos = async () => {
+        const response = await client.request({
+            path: `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${search}`,
+        })
+        const data = response.result.items
+        
+        setVideos(data)
+    }
 
-    return { videos, getVideos }
+    return { videos, getVideos, client }
 }
 
 export default useGapi;
