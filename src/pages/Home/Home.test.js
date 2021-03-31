@@ -1,8 +1,24 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
+import mockData from '../../youtube-videos-mock'
 import Home from './Home.page';
 
-describe("Homa page", () => {
+describe("Home page", () => {
+  beforeAll( () => {
+    window.gapi = {
+      load: ( _ , fn) => {
+          fn()
+      },
+      client: {
+          init: jest.fn().mockResolvedValue(),
+          request: jest.fn().mockResolvedValue(
+              {
+                  result: mockData
+              }
+          )
+      }
+    }
+  } )
     test("renders Navbar", () => {
         render(<Home/>)
         const Navbar = screen.getByRole('navigation');
