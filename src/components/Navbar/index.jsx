@@ -1,7 +1,12 @@
 import React from 'react';
 import SearchForm from '../SearchForm';
 
-const Navbar = () => {
+const Navbar = ({callBack}) => {
+
+  const updateSearch = (childData) => {
+    callBack(childData)
+  }
+
   return (
     <>
       <nav className="flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 mb-3">
@@ -23,7 +28,8 @@ const Navbar = () => {
             </svg>
           </div>
           <div className="m-auto">
-            <SearchForm/>
+            <SearchForm
+              callBack={updateSearch}/>
           </div>
         </div>
         <div className="flex justify-between md:w-2/12 m-auto md:m-0">

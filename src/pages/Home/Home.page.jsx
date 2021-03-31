@@ -5,16 +5,17 @@ import useGapi from '../../hooks/useGapi';
 
 function HomePage() {
   
-  const {videos, getVideos, client} = useGapi('')
+  const [search, setSearch] = useState("")
+  let { videos } = useGapi(search)
 
-  useEffect( () => {
-    if( client === undefined ) return;
-    getVideos()
-  }, [client])
+  const updateSearch = (childData) => {
+    setSearch(childData)
+  }
 
   return (
     <>
-      <NavBar />
+      <NavBar
+        callBack={updateSearch} />
       <VideoCardList
         videos={videos}
         channel={videos[0]} />
