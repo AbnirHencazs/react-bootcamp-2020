@@ -10,13 +10,23 @@ const useGapi = (search) => {
         initGapi()
     }, [ search, client] )
 
-    const initGapi = () => {
+    const loadGapi = () => new Promise( (resolve,reject) => {
+
         try {
-            load('client', async () => {
-                await client.init({ apiKey: process.env.REACT_APP_APIKEY, })
+            load('client', () => {
+                client.init({apiKey: process.env.REACT_APP_APIKEY})
+                    .then(resolve)
             })
         } catch (error) {
-            console.log(error)
+            reject(error)
+        }
+
+    } )
+    const initGapi = async () => {
+        try {
+            await loadGapi()
+        } catch (error) {
+            
         }
     }
     
@@ -24,6 +34,7 @@ const useGapi = (search) => {
         const response = await client.request({
             path: `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${search}`,
         })
+
         const data = response.result.items
         
         setVideos(data)
