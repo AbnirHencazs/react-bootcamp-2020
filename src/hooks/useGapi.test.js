@@ -1,9 +1,26 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 import useGapi from './useGapi';
 import { server } from '../mocks/server';
+import  mockData  from '../youtube-videos-mock'
 
 describe("Custom hook useGapi", () => {
-    beforeAll(() => server.listen())
+    beforeAll(() => {
+        server.listen()
+
+        window.gapi = {
+            load: ( _ , fn) => {
+                fn()
+            },
+            client: {
+                init: jest.fn().mockResolvedValue(),
+                request: jest.fn().mockResolvedValue(
+                    {
+                        result: mockData
+                    }
+                )
+            }
+        }
+    })
     afterEach(() => server.resetHandlers())
     afterAll(() => server.close())
 

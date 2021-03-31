@@ -8,13 +8,14 @@ const useMsw = (url) => {
             const response = await fetch(url)
             const data = await response.json()
 
-            setVideos(data.mockData.items)
+            setVideos( data.mockData.items )
+
         } catch (error) {
-            console.log(error)
+            console.log( error )
         }
     }
 
-    return {videos, getVideos}
+    return { videos, getVideos }
 }
 
 export default useMsw;
