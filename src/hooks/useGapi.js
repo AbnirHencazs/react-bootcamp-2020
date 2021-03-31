@@ -25,6 +25,7 @@ const useGapi = (search) => {
     const initGapi = async () => {
         try {
             await loadGapi()
+            getVideos()
         } catch (error) {
             
         }
@@ -40,7 +41,7 @@ const useGapi = (search) => {
         setVideos(data)
     }
 
-    return { videos, getVideos, client }
+    return { videos }
 }
 
 export default useGapi;

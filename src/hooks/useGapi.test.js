@@ -27,8 +27,6 @@ describe("Custom hook useGapi", () => {
     test('Should return a list of Youtube videos', async () => {
         const { result, waitForNextUpdate } = renderHook( () => useGapi("/videos") )
 
-        result.current.getVideos()
-
         await waitForNextUpdate()
     
         expect( result.current.videos.length ).toBeGreaterThanOrEqual(24)
