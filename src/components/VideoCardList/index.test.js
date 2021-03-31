@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import {items} from '../../youtube-videos-mock';
 import { server } from '../../mocks/server';
 import { renderHook } from '@testing-library/react-hooks';
-import useGapi from '../../hooks/useGapi';
+import useMsw from '../../hooks/useMsw';
 import VideoCardList from './index';
 
 test('render video card list component', () => {
@@ -41,7 +41,7 @@ describe("VideoCardList component", () => {
   })
 
   test("Obtain videos from mws using useGapi custom hooks and render them in VideoCardList component", async () => {
-    const { result, waitForNextUpdate } = renderHook( () => useGapi("/videos") )
+    const { result, waitForNextUpdate } = renderHook( () => useMsw("/videos") )
 
     result.current.getVideos()
     await waitForNextUpdate()
