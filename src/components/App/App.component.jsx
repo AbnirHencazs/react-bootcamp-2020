@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from '../../pages/Home';
 import VideoPage from '../../pages/Video'
@@ -12,16 +12,22 @@ if (process.env.NODE_ENV === 'development') {
 
 
 function App() {
+  const VideoContext = createContext({})
+
+  const [selectedVideo, setSelectedVideo] = useState({})
+
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
-        <Route exact path="/video">
-          <VideoPage/>
-        </Route>
-      </Switch>
+      <VideoContext.provider value={{ selectedVideo, setSelectedVideo }}>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route exact path="/video">
+            <VideoPage/>
+          </Route>
+        </Switch>
+      </VideoContext.provider>
     </BrowserRouter>
   );
 }

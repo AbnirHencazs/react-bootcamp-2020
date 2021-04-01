@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import VideoCard from '../VideoCard';
 import { Link } from 'react-router-dom'
 
 const VideoCardList = ({videos, channel}) => {
-  
+  const { selectedVideo, setSelectedVideo } = useContext(VideoContext)
+  const handleClick = (video) => {
+    setSelectedVideo(video)
+  }
   return (
     <div className="container my-12 mx-auto px-4 md:px-12" data-testid="VideoCardList">
       <div className="flex flex-wrap -mx-1 lg:-mx-4">
@@ -17,7 +20,7 @@ const VideoCardList = ({videos, channel}) => {
             // render Video list
             <Link
               to="/video"
-              onClick={handleClick}>
+              onClick={handleClick(video)}>
               <VideoCard
                 key={video.id.videoId}
                 snippet={video.snippet}
