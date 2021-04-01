@@ -1,5 +1,6 @@
 import React from 'react';
 import VideoCard from '../VideoCard';
+import { Link } from 'react-router-dom'
 
 const VideoCardList = ({videos, channel}) => {
   
@@ -14,12 +15,16 @@ const VideoCardList = ({videos, channel}) => {
           )
           .map((video) => (
             // render Video list
-            <VideoCard
-              key={video.id.videoId}
-              snippet={video.snippet}
-              channelInfo={channel}
-              data-testid="VideoCard"
-            />
+            <Link
+              to="/video"
+              onClick={handleClick}>
+              <VideoCard
+                key={video.id.videoId}
+                snippet={video.snippet}
+                channelInfo={channel}
+                data-testid="VideoCard"
+              />
+            </Link>
           ))}
       </div>
     </div>
