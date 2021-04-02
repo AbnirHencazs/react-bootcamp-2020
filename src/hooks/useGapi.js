@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 
-const useGapi = (search) => {
+const useGapi = (search = "", relatedTo = "") => {
 
     const [ videos, setVideos ] = useState([])
+    const [ isLoading, setIsLoading ] = useState(false)
     const { client, load } = window.gapi;
 
     useEffect( () => {
@@ -14,9 +15,8 @@ const useGapi = (search) => {
 
         try {
             load('client', () => {
-                console.log(process.env.REACT_APP_APIKEY_2)
                 client.init({
-                    apiKey: process.env.REACT_APP_APIKEY_2,
+                    apiKey: process.env.REACT_APP_APIKEY,
                 })
                     .then(resolve)
             })
@@ -27,6 +27,7 @@ const useGapi = (search) => {
     } )
     const initGapi = async () => {
         try {
+            setIsLoading(true)
             await loadGapi()
             getVideos()
         } catch (error) {
@@ -41,19 +42,18 @@ const useGapi = (search) => {
             params: {
                 part:'snippet',
                 maxResults:25,
-                chart:'mostPopular',
-                regionCode:'us',
-                q:search
+                q:search,
+                relatedToVideoId: relatedTo,
+                type:"video",
             }
         })
-
         const data = response.result.items
-        
         setVideos(data)
+        setIsLoading(false)
         console.log(data)
     }
 
-    return { videos }
+    return { videos, isLoading }
 }
 
 export default useGapi;
