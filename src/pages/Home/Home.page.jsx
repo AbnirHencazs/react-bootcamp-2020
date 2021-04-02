@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import NavBar from '../../components/Navbar';
 import VideoCardList from '../../components/VideoCardList';
 import useGapi from '../../hooks/useGapi';
@@ -6,7 +6,7 @@ import useGapi from '../../hooks/useGapi';
 function HomePage() {
   
   const [search, setSearch] = useState("")
-  let { videos } = useGapi(search)
+  let { videos } = useGapi(search, null)
 
   const updateSearch = (childData) => {
     setSearch(childData)
