@@ -1,10 +1,14 @@
 import React from 'react';
+import { useParams } from 'react-router-dom'
 
-const VideoPlayer = ({ video }) =>{
+const VideoPlayer = () =>{
+    const { videoId } = useParams();
     return(
-        <>
-            <iframe width="560" height="315" src={`https://www.youtube.com/embed/${video.id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </>
+        
+        <div className="flex w-8/12 h-4/5 px-10">
+            <iframe className="w-full h-5/5" src={`https://www.youtube.com/embed/${videoId}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        </div>
+        
     )
 }
 
