@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NavBar from '../../components/Navbar';
 import VideoCardList from '../../components/VideoCardList';
 import useGapi from '../../hooks/useGapi';

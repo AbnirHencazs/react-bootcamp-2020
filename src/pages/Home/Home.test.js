@@ -2,9 +2,13 @@ import React from 'react';
 import { screen, render } from '@testing-library/react';
 import mockData from '../../youtube-videos-mock'
 import Home from './Home.page';
+import { useParams } from 'react-router-dom';
 
 describe("Home page", () => {
   beforeAll( () => {
+
+    useParams.mockImplementation(() => ({ searchQuery: '' }));
+
     window.gapi = {
       load: ( _ , fn) => {
           fn()
@@ -20,7 +24,9 @@ describe("Home page", () => {
     }
   } )
     test("renders Navbar", () => {
-        render(<Home/>)
+        render(
+          <Home/>
+        )
         const Navbar = screen.getByRole('navigation');
 
         expect( Navbar ).toBeVisible()
@@ -53,13 +59,12 @@ describe("Home page", () => {
             <div
               class="m-auto"
             >
-              <form
-                action=""
-              >
+              <form>
                 <input
                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                   placeholder="Search"
                   type="text"
+                  value=""
                 />
               </form>
             </div>
