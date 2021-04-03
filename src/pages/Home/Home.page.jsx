@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 function HomePage() {
   
   const { searchQuery } = useParams();
-  let { videos } = useGapi(searchQuery, null)
+  let { videos } = useGapi( searchQuery ? searchQuery : "", null)
 
   return (
     <>
