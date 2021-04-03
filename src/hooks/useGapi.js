@@ -51,7 +51,6 @@ const useGapi = (search = "", relatedTo = "", isList = true) => {
             const data = response.result.items
             setVideos(data)
             setIsLoading(false)
-            console.log(data)
         }else{
             const response = await client.request({
                 path:`https://www.googleapis.com/youtube/v3/videos`,
@@ -63,7 +62,6 @@ const useGapi = (search = "", relatedTo = "", isList = true) => {
             const data = response.result.items[0]
             setVideo(data)
             setIsLoading(false)
-            console.log(data)
         }
     }, [search, relatedTo, isList] )
 
