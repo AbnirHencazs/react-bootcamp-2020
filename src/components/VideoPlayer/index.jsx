@@ -12,8 +12,8 @@ const VideoPlayer = () =>{
     }
     return(
         
-        <div className="flex flex-col w-8/12 max-h-full px-10 ">
-            <iframe className="w-full h-4/5" src={`https://www.youtube.com/embed/${videoId}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        <div className="flex flex-col w-full md:w-8/12 max-h-full px-10 ">
+            <iframe className="w-full h-2/5 md:h-4/5" src={`https://www.youtube.com/embed/${videoId}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             <div class="flex h-1/5">
                 {
                     isLoading ?
@@ -26,7 +26,12 @@ const VideoPlayer = () =>{
                             </p>
                         </h1>
                         <p className="text-gray-800 text-opacity-80 ">
-                            {video.snippet.description}
+                            {
+                                (video.snippet.description.length > 250) ?
+                                `${video.snippet.description.substring(0, 250)}... `
+                                :
+                                video.snippet.description
+                            }
                         </p>
                         
                     </div>

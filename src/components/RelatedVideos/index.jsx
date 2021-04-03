@@ -22,7 +22,7 @@ const RelatedVideos = () => {
 
     return(
         
-            <div className="flex flex-col w-4/12 overflow-y-scroll border-l-2 border-gray-300 rounded-md">
+            <div className="flex flex-col md:w-4/12 md:overflow-y-scroll md:border-l-2 md:border-gray-300 md:rounded-md">
                 {
                     isLoading ? 
                     "Cargando"
@@ -33,7 +33,7 @@ const RelatedVideos = () => {
                             <article className="overflow-hidden rounded-lg shadow-lg flex justify-between">
                                 
                                 <div className="flex">
-                                    <img className="flex max-w-min" src={video.snippet.thumbnails.medium.url} alt=""/>
+                                    <img className="flex md:max-w-min w-15" src={video.snippet.thumbnails.medium.url} alt=""/>
                                 </div>
                                 <div className="flex flex-col w-auto px-2">
                                     <h1 className="text-sm font-bold h-1/2">
