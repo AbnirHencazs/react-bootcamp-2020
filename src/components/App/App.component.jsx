@@ -22,7 +22,10 @@ function App() {
         <Route exact path="/">
           <HomePage />
         </Route>
-        <Route exact path="/video/:videoId" component={VideoPlayer, RelatedVideos}>
+        <Route exact path="/q:searchQuery">
+          <HomePage/>
+        </Route>
+        <Route exact path="/video/:videoId" component={VideoPlayer}>
           <VideoPage/>
         </Route>
       </Switch>
