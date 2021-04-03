@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
 
-const SearchForm = ({callBack}) => {
-
+const SearchForm = () => {
+    const history = useHistory()
     const [search, setSearch] = useState("")
 
     const handleOnchange = (e) => {
@@ -9,7 +10,7 @@ const SearchForm = ({callBack}) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        callBack(search)
+        history.push(`/q:${search}`)
     }
 
     return(
