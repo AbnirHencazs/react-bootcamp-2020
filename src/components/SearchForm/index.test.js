@@ -13,6 +13,7 @@ describe( 'SearchForm', () => {
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               placeholder="Search"
               type="text"
+              value=""
             />
         `)
     })
