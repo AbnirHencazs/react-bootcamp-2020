@@ -1,10 +1,13 @@
 import React from 'react';
 import moment from 'moment';
 
-const VideoCard = ({ snippet, channelInfo }) => {
+const VideoCard = ({ snippet, channelInfo, handleClick }) => {
+
+
+
   return (
     <>
-      <div className="my-1 px-1 py-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+      <div className="my-1 px-1 py-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 cursor-pointer" onClick={handleClick}>
         <article className="overflow-hidden rounded-lg shadow-lg">
           <img
             alt="video thumbnail"

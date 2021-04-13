@@ -1,6 +1,8 @@
 import React from 'react';
+import SearchForm from '../SearchForm';
 
 const Navbar = () => {
+
   return (
     <>
       <nav className="flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 mb-3">
@@ -22,11 +24,7 @@ const Navbar = () => {
             </svg>
           </div>
           <div className="m-auto">
-            <input
-              className="focus:ring focus:outline-none focus:border-blue-500 px-3 py-2 w-20 md:w-60 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow outline-none"
-              type="text"
-              placeholder="Search"
-            />
+            <SearchForm/>
           </div>
         </div>
         <div className="flex justify-between md:w-2/12 m-auto md:m-0">
