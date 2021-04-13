@@ -2,7 +2,9 @@ import React, { createContext, useContext, useState } from 'react';
 
 const GlobalContext = createContext({
     darkMode: undefined,
-    toggleDarkMode: () => {}
+    toggleDarkMode: () => {},
+    searchQuery: '',
+    submitSearchQuery: () => {}
 });
 
 const useGlobals = () => {
@@ -16,6 +18,11 @@ const useGlobals = () => {
 
 const GlobalProvider = ({ children }) => {
     const [darkMode, setDarkMode] = useState(false)
+    const [searchQuery, setSearchQuery] = useState('')
+
+    const submitSearchQuery = (input) => {
+        setSearchQuery(input)
+    }
 
     const toggleDarkMode = (darkMode) => {
         setDarkMode(!darkMode)
@@ -32,7 +39,7 @@ const GlobalProvider = ({ children }) => {
     }
 
     return(
-        <GlobalContext.Provider value={{darkMode, toggleDarkMode}}>
+        <GlobalContext.Provider value={{darkMode, toggleDarkMode, searchQuery, submitSearchQuery}}>
             {children}
         </GlobalContext.Provider>
     )
