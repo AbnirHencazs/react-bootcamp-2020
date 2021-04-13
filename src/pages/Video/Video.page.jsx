@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 const VideoPage = () => {
     const history = useHistory()
     const updateSearch = (childData) =>{
-        history.push(`/q:${childData}`)
+        history.push(`/q/${childData}`)
     }
     return(
         <>
