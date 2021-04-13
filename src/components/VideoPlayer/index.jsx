@@ -15,10 +15,8 @@ const VideoPlayer = () =>{
         <div className="flex flex-col w-full md:w-8/12 max-h-full px-10 ">
             <iframe className="w-full h-2/5 md:h-4/5" src={`https://www.youtube.com/embed/${videoId}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             <div className="flex h-1/5">
-                {
-                    isLoading ?
-                    "Cargando":
-                    checkVideo(video) ? 
+                { isLoading ? "Cargando":"" }
+                { !isLoading && checkVideo(video) ? 
                     <div>
                         <h1 className="text-lg font-bold">
                             <p className="no-underline hover:underline text-gray-800 text-opacity-80 ">
@@ -35,9 +33,7 @@ const VideoPlayer = () =>{
                         </p>
                         
                     </div>
-                    
-                    : "Sín titulo"
-                }
+                    : "Sín titulo" }
             </div>
         </div>
         
