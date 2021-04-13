@@ -2,7 +2,6 @@ import React from 'react';
 import NavBar from '../../components/Navbar';
 import VideoCardList from '../../components/VideoCardList';
 import useGapi from '../../hooks/useGapi';
-import { useParams } from 'react-router-dom';
 import { useGlobals } from '../../state/GlobalProvider';
 
 function HomePage() {
@@ -13,9 +12,11 @@ function HomePage() {
   return (
     <>
       <NavBar/>
-      <VideoCardList
-        videos={videos}
-        channel={videos[0]} />
+      <div className="dark:bg-gray-800">
+        <VideoCardList
+          videos={videos}
+          channel={videos[0]} />
+      </div>
     </>
   );
 }

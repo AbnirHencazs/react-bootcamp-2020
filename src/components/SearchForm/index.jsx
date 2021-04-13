@@ -5,7 +5,7 @@ import { useGlobals } from '../../state/GlobalProvider';
 const SearchForm = () => {
     const history = useHistory()
     const [search, setSearch] = useState("")
-    const { searchQuery, submitSearchQuery } = useGlobals()
+    const { submitSearchQuery } = useGlobals()
 
     const handleOnchange = (e) => {
         setSearch(e.target.value)

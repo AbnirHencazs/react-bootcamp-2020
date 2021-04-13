@@ -8,7 +8,7 @@ const VideoCard = ({ snippet, channelInfo, handleClick }) => {
   return (
     <>
       <div className="my-1 px-1 py-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 cursor-pointer" onClick={handleClick}>
-        <article className="overflow-hidden rounded-lg shadow-lg">
+        <article className="overflow-hidden rounded-lg shadow-lg  dark:bg-gray-900">
           <img
             alt="video thumbnail"
             className="block h-auto w-full"
@@ -18,7 +18,7 @@ const VideoCard = ({ snippet, channelInfo, handleClick }) => {
           <header className="flex items-center justify-between leading-tight p-2 md:p-4">
             <h1 className="text-lg font-bold">
               <p
-                className="no-underline hover:underline text-gray-800 text-opacity-80 "
+                className="no-underline hover:underline text-gray-800 text-opacity-80 dark:text-white"
                 href="google.com"
               >
                 {snippet.title}
@@ -27,7 +27,7 @@ const VideoCard = ({ snippet, channelInfo, handleClick }) => {
           </header>
 
           <div className="flex items-center justify-between p-2 md:px-4">
-            <p className="text-gray-800 text-opacity-80 text-sm leading-thight">
+            <p className="text-gray-800 text-opacity-80 text-sm leading-thight dark:text-gray-100">
               {snippet.description.substring(0, 150)}...
             </p>
           </div>
@@ -42,7 +42,7 @@ const VideoCard = ({ snippet, channelInfo, handleClick }) => {
                 className="rounder-full w-10"
                 src={channelInfo.snippet.thumbnails.default.url}
               />
-              <p className="m-auto ml-2 text-sm">{snippet.channelTitle}</p>
+              <p className="m-auto ml-2 text-sm dark:text-gray-100">{snippet.channelTitle}</p>
             </a>
             <div className="flex">
               <svg
@@ -59,7 +59,7 @@ const VideoCard = ({ snippet, channelInfo, handleClick }) => {
                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                 />
               </svg>
-              <p className="m-auto ml-2 text-sm">
+              <p className="m-auto ml-2 text-sm dark:text-gray-100">
                 {moment(snippet.publishedAt).fromNow()}
               </p>
             </div>

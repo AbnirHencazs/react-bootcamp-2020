@@ -21,10 +21,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route exact path="/q/:searchQuery">
-            <HomePage/>
+            <HomePage className="dark:bg-gray-900"/>
           </Route>
           <Route exact path="/video/:videoId" component={VideoPlayer}>
             <VideoPage/>
