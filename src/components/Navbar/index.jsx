@@ -1,11 +1,14 @@
 import React from 'react';
+import { useGlobals } from '../../state/GlobalProvider';
 import SearchForm from '../SearchForm';
 
 const Navbar = () => {
 
+  const { toggleTheme } = useGlobals();
+
   return (
     <>
-      <nav className="flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 mb-3">
+      <nav className="flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 dark:bg-gray-800 mb-3">
         <div className="flex justify-between md:w-4/12 m-auto md:m-0">
           <div className="m-auto">
             <svg
@@ -28,7 +31,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex justify-between md:w-2/12 m-auto md:m-0">
-          <div className="m-auto border-2 rounded-full border-white bg-white hover:bg-blue-200">
+          <div className="m-auto border-2 rounded-full border-white bg-white hover:bg-blue-200 cursor-pointer" onClick={ toggleTheme }>
             <svg
               className="flex w-6 md:w-10"
               xmlns="http://www.w3.org/2000/svg"
