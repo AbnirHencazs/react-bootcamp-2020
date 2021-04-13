@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
 
 const GlobalContext = createContext({
-    darkMode: undefined,
-    toggleDarkMode: () => {}
+    theme: "light",
+    toggleTheme: () => {}
 });
 
 const useGlobals = () => {
@@ -15,24 +15,25 @@ const useGlobals = () => {
 }
 
 const GlobalProvider = ({ children }) => {
-    const [darkMode, setDarkMode] = useState(false)
-
-    const toggleDarkMode = (darkMode) => {
-        setDarkMode(!darkMode)
+    const [ theme, setTheme ] = useState("light")
+    const toggleTheme = () => {
+        // setDarkMode(!darkMode)
         //Get the whole html document
         const root = window.document.documentElement
-
-        if(!darkMode){
-            root.classList.remove("dark")
-            root.classList.add("light")
-        }else{
+        if( theme === "light" ){
             root.classList.remove("light")
             root.classList.add("dark")
+            setTheme("dark")
+        }else{
+            root.classList.remove("dark")
+            root.classList.add("light")
+            setTheme("light")
         }
+        
     }
 
     return(
-        <GlobalContext.Provider value={{darkMode, toggleDarkMode}}>
+        <GlobalContext.Provider value={{theme, toggleTheme}}>
             {children}
         </GlobalContext.Provider>
     )
