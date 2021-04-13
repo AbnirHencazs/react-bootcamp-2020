@@ -2,7 +2,9 @@ import React, { createContext, useContext, useState } from 'react';
 
 const GlobalContext = createContext({
     theme: "light",
-    toggleTheme: () => {}
+    toggleTheme: () => {},
+    searchQuery: '',
+    submitSearchQuery: () => {}
 });
 
 const useGlobals = () => {
@@ -16,8 +18,13 @@ const useGlobals = () => {
 
 const GlobalProvider = ({ children }) => {
     const [ theme, setTheme ] = useState("light")
+    const [searchQuery, setSearchQuery] = useState('')
+
+    const submitSearchQuery = (input) => {
+        setSearchQuery(input)
+    }
+    
     const toggleTheme = () => {
-        // setDarkMode(!darkMode)
         //Get the whole html document
         const root = window.document.documentElement
         if( theme === "light" ){
@@ -29,11 +36,10 @@ const GlobalProvider = ({ children }) => {
             root.classList.add("light")
             setTheme("light")
         }
-        
     }
 
     return(
-        <GlobalContext.Provider value={{theme, toggleTheme}}>
+        <GlobalContext.Provider value={{theme, toggleTheme, searchQuery, submitSearchQuery}}>
             {children}
         </GlobalContext.Provider>
     )
