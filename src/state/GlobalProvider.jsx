@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
+import reducer from './globalReducer'
+import { SET_THEME, SET_SEARCH_QUERY } from '../utils/constants'
 
 const GlobalContext = createContext({
     theme: "light",
@@ -17,29 +19,28 @@ const useGlobals = () => {
 }
 
 const GlobalProvider = ({ children }) => {
-    const [ theme, setTheme ] = useState("light")
-    const [searchQuery, setSearchQuery] = useState('')
-
+    
+    const [state, dispatch] = useReducer(reducer, {theme:"light", searchQuery: ""})
     const submitSearchQuery = (input) => {
-        setSearchQuery(input)
+        dispatch( { type: SET_SEARCH_QUERY, payload: input } )
     }
     
     const toggleTheme = () => {
         //Get the whole html document
         const root = window.document.documentElement
-        if( theme === "light" ){
+        if( state.theme === "light" ){
             root.classList.remove("light")
             root.classList.add("dark")
-            setTheme("dark")
+            dispatch( { type:SET_THEME, payload:"dark" } )
         }else{
             root.classList.remove("dark")
             root.classList.add("light")
-            setTheme("light")
+            dispatch( { type:SET_THEME, payload:"light" } )
         }
     }
 
     return(
-        <GlobalContext.Provider value={{theme, toggleTheme, searchQuery, submitSearchQuery}}>
+        <GlobalContext.Provider value={{theme: state.theme, toggleTheme, searchQuery: state.searchQuery, submitSearchQuery}}>
             {children}
         </GlobalContext.Provider>
     )
