@@ -15,6 +15,6 @@ test('render nav bar', () => {
 
     const result = screen.getByRole('navigation')
     expect(result).toBeInTheDocument()
-    expect(result).toHaveClass("flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 mb-3")
+    expect(result).toHaveClass("flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 dark:bg-indigo-900")
     expect(result).toBeVisible()
 })
