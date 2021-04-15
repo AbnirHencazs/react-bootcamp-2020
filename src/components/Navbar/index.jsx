@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 dark:bg-indigo-900 ">
+      <nav className="flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 dark:bg-indigo-900 dark:bg-opacity-60">
         <div className="flex justify-between md:w-4/12 m-auto md:m-0">
           <div className="m-auto">
             <svg

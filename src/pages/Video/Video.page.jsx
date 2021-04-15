@@ -8,7 +8,7 @@ const VideoPage = () => {
     return(
         <>
             <Navbar/>
-            <div className="flex h-screen mt-5">
+            <div className="flex h-screen pt-5 dark:bg-gray-800">
                 <div className="flex flex-col md:flex-row w-full h-4/5">
                     <VideoPlayer
                         />
