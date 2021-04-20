@@ -19,7 +19,7 @@ const useGapi = (search = "", relatedTo = "", isList = true) => {
                 client.init({
                     apiKey: process.env.REACT_APP_APIKEY,
                 })
-                    .then(resolve)
+                    .then(resolve(getVideos()))
             })
         } catch (error) {
             reject(error)
@@ -30,7 +30,7 @@ const useGapi = (search = "", relatedTo = "", isList = true) => {
         try {
             setIsLoading(true)
             await loadGapi()
-            getVideos()
+            // getVideos()
         } catch (error) {
             
         }

@@ -32,10 +32,10 @@ describe("Video Page", () => {
         const Navbar = screen.getByRole('navigation');
 
         expect( Navbar ).toBeVisible()
-        expect( Navbar ).toHaveClass("flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 mb-3")
+        expect( Navbar ).toHaveClass("flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 dark:bg-indigo-900 dark:bg-opacity-60")
         expect( Navbar ).toMatchInlineSnapshot(`
         <nav
-          class="flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 mb-3"
+          class="flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 dark:bg-indigo-900 dark:bg-opacity-60"
         >
           <div
             class="flex justify-between md:w-4/12 m-auto md:m-0"
@@ -75,7 +75,7 @@ describe("Video Page", () => {
             class="flex justify-between md:w-2/12 m-auto md:m-0"
           >
             <div
-              class="m-auto border-2 rounded-full border-white bg-white hover:bg-blue-200"
+              class="m-auto border-2 rounded-full border-white bg-white hover:bg-blue-200 cursor-pointer"
             >
               <svg
                 class="flex w-6 md:w-10"

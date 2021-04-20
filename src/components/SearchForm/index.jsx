@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
+import { useGlobals } from '../../state/GlobalProvider';
 
 const SearchForm = () => {
     const history = useHistory()
     const [search, setSearch] = useState("")
+    const { submitSearchQuery } = useGlobals()
 
     const handleOnchange = (e) => {
         setSearch(e.target.value)
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        history.push(`/q/${search}`)
+        submitSearchQuery(search)
+        history.push(`/`)
     }
 
     return(

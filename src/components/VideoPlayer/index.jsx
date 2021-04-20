@@ -19,11 +19,11 @@ const VideoPlayer = () =>{
                 { !isLoading && checkVideo(video) ? 
                     <div>
                         <h1 className="text-lg font-bold">
-                            <p className="no-underline hover:underline text-gray-800 text-opacity-80 ">
+                            <p className="no-underline hover:underline text-gray-800 text-opacity-80 dark:text-white">
                                 {video.snippet.title}
                             </p>
                         </h1>
-                        <p className="text-gray-800 text-opacity-80 ">
+                        <p className="text-gray-800 text-opacity-80 dark:text-white">
                             {
                                 (video.snippet.description.length > 250) ?
                                 `${video.snippet.description.substring(0, 250)}... `
