@@ -1,12 +1,14 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import reducer from './globalReducer'
-import { SET_THEME, SET_SEARCH_QUERY } from '../utils/constants'
+import { SET_THEME, SET_SEARCH_QUERY, SET_USER } from '../utils/constants'
 
 const GlobalContext = createContext({
     theme: "light",
     toggleTheme: () => {},
     searchQuery: '',
-    submitSearchQuery: () => {}
+    submitSearchQuery: () => {},
+    user: {},
+    updateUser: () => {}
 });
 
 const useGlobals = () => {
@@ -20,7 +22,15 @@ const useGlobals = () => {
 
 const GlobalProvider = ({ children }) => {
     
-    const [state, dispatch] = useReducer(reducer, {theme:"light", searchQuery: ""})
+    const [state, dispatch] = useReducer(reducer, {
+        theme:"light", 
+        searchQuery: "",
+        user:{
+            id: '',
+            name: '',
+            avatarUrl: ''
+        }
+    })
     const submitSearchQuery = (input) => {
         dispatch( { type: SET_SEARCH_QUERY, payload: input } )
     }
@@ -39,8 +49,15 @@ const GlobalProvider = ({ children }) => {
         }
     }
 
+    const updateUser = (user) => {
+        dispatch({
+            type:SET_USER,
+            payload: user
+        })
+    }
+
     return(
-        <GlobalContext.Provider value={{theme: state.theme, toggleTheme, searchQuery: state.searchQuery, submitSearchQuery}}>
+        <GlobalContext.Provider value={{theme: state.theme, toggleTheme, searchQuery: state.searchQuery, submitSearchQuery, user:state.user, updateUser}}>
             {children}
         </GlobalContext.Provider>
     )
