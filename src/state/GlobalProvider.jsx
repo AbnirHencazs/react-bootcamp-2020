@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import reducer from './globalReducer'
-import { SET_THEME, SET_SEARCH_QUERY, SET_USER } from '../utils/constants'
+import { SET_THEME, SET_SEARCH_QUERY, SET_USER, UNSET_USER } from '../utils/constants'
 
 const GlobalContext = createContext({
     theme: "light",
@@ -26,9 +26,6 @@ const GlobalProvider = ({ children }) => {
         theme:"light", 
         searchQuery: "",
         user:{
-            id: '',
-            name: '',
-            avatarUrl: ''
         }
     })
     const submitSearchQuery = (input) => {
@@ -50,10 +47,18 @@ const GlobalProvider = ({ children }) => {
     }
 
     const updateUser = (user) => {
-        dispatch({
-            type:SET_USER,
-            payload: user
-        })
+        if(state.user.authenticated){
+            dispatch({
+                type:UNSET_USER,
+                payload: {
+                }
+            })
+        }else{
+            dispatch({
+                type:SET_USER,
+                payload: user
+            })
+        }
     }
 
     return(
