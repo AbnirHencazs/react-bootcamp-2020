@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import reducer from './globalReducer'
-import { SET_THEME, SET_SEARCH_QUERY, SET_USER, UNSET_USER } from '../utils/constants'
+import { SET_THEME, SET_SEARCH_QUERY, SET_USER, UNSET_USER, ADD_FAVOURITE } from '../utils/constants'
 
 const GlobalContext = createContext({
     theme: "light",
@@ -8,7 +8,10 @@ const GlobalContext = createContext({
     searchQuery: '',
     submitSearchQuery: () => {},
     user: {},
-    updateUser: () => {}
+    updateUser: () => {},
+    favourites: [],
+    addFavourite: () => {},
+    removeFavourite: () => {}
 });
 
 const useGlobals = () => {
@@ -25,7 +28,8 @@ const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, {
         theme:"light", 
         searchQuery: "",
-        user: JSON.parse(localStorage.getItem("userInfo"))
+        user: JSON.parse(localStorage.getItem("userInfo")),
+        favourites: JSON.parse(localStorage.getItem("favouriteVideos"))
     })
 
     useEffect(() => {
@@ -33,8 +37,18 @@ const GlobalProvider = ({ children }) => {
             localStorage.setItem("userInfo", JSON.stringify({}))
             return
         }
+        
         localStorage.setItem("userInfo", JSON.stringify(state.user))
     },[state.user])
+
+    useEffect(() => {
+        if(state.favourites === null){
+            localStorage.setItem("favouriteVideos", JSON.stringify([]))
+            return
+        }
+
+        localStorage.setItem("favouriteVideos", JSON.stringify(state.favourites))
+    },[state.favourites])
 
     const submitSearchQuery = (input) => {
         dispatch( { type: SET_SEARCH_QUERY, payload: input } )
@@ -54,6 +68,10 @@ const GlobalProvider = ({ children }) => {
         }
     }
 
+    const addFavourite = (video) => {
+        dispatch({type: ADD_FAVOURITE, payload: video})
+    }
+
     const updateUser = (user) => {
         if(state.user.authenticated){
             dispatch({
@@ -70,7 +88,8 @@ const GlobalProvider = ({ children }) => {
     }
 
     return(
-        <GlobalContext.Provider value={{theme: state.theme, toggleTheme, searchQuery: state.searchQuery, submitSearchQuery, user:state.user, updateUser}}>
+        <GlobalContext.Provider 
+            value={{theme: state.theme, toggleTheme, searchQuery: state.searchQuery, submitSearchQuery, user:state.user, updateUser, favourites:state.favourites, addFavourite}}>
             {children}
         </GlobalContext.Provider>
     )
