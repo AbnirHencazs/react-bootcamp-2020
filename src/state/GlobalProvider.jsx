@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import reducer from './globalReducer'
-import { SET_THEME, SET_SEARCH_QUERY, SET_USER, UNSET_USER, ADD_FAVOURITE } from '../utils/constants'
+import { SET_THEME, SET_SEARCH_QUERY, SET_USER, UNSET_USER, ADD_FAVOURITE, REMOVE_FAVOURITE } from '../utils/constants'
 
 const GlobalContext = createContext({
     theme: "light",
@@ -72,6 +72,10 @@ const GlobalProvider = ({ children }) => {
         dispatch({type: ADD_FAVOURITE, payload: video})
     }
 
+    const removeFavourite = (video) => {
+        dispatch({type: REMOVE_FAVOURITE, payload:video})
+    }
+
     const updateUser = (user) => {
         if(state.user.authenticated){
             dispatch({
@@ -89,7 +93,7 @@ const GlobalProvider = ({ children }) => {
 
     return(
         <GlobalContext.Provider 
-            value={{theme: state.theme, toggleTheme, searchQuery: state.searchQuery, submitSearchQuery, user:state.user, updateUser, favourites:state.favourites, addFavourite}}>
+            value={{theme: state.theme, toggleTheme, searchQuery: state.searchQuery, submitSearchQuery, user:state.user, updateUser, favourites:state.favourites, addFavourite, removeFavourite}}>
             {children}
         </GlobalContext.Provider>
     )

@@ -8,7 +8,6 @@ const FavouritePage = () => {
   const { favourites } = useGlobals();
   const history = useHistory()
   const handleClick = (video) => {
-    console.log(video)
     history.push(`/favourite/${video.id}`)
   }
 
