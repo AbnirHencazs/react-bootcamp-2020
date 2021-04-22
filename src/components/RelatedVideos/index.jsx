@@ -3,10 +3,8 @@ import useGapi from '../../hooks/useGapi'
 import { useParams, useHistory } from 'react-router-dom';
 import moment from 'moment';
 
-const RelatedVideos = () => {
+const RelatedVideos = ({videos, isLoading}) => {
 
-    const { videoId } = useParams();
-    const { videos, isLoading } = useGapi( "", videoId )
     const history = useHistory()
     
     const handleClick = (video) => {
