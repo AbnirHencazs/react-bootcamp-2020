@@ -4,9 +4,8 @@ import useGapi from '../../hooks/useGapi';
 import { useGlobals } from '../../state/GlobalProvider'
 import { REMOVE_FAVOURITE } from '../../utils/constants';
 
-const VideoPlayer = () =>{
-    const { videoId } = useParams();
-    const { video, isLoading } = useGapi("", videoId, false)
+const VideoPlayer = ({videoId, video, isLoading}) =>{
+  
     const { addFavourite, removeFavourite, favourites } = useGlobals() 
     const checkVideo = () => {
         if(video === undefined) return false;
@@ -22,8 +21,7 @@ const VideoPlayer = () =>{
             }
         });
         return favourited
-    }
-    
+    }   
     return(
         
         <div className="flex flex-col w-full md:w-8/12 max-h-full px-10 ">
