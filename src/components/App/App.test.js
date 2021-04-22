@@ -39,7 +39,7 @@ describe("App component", () => {
         render(
             <MemoryRouter
                 initialEntries={["/login"]}>
-                <LoginPage/>
+                <App/>
             </MemoryRouter>
         )
         const heading = screen.getByRole("heading",{
@@ -54,43 +54,12 @@ describe("App component", () => {
         expect(loginForm).toBeInTheDocument()
         expect(loginButton).toBeInTheDocument()
     })
-    test("Renders Favourites page", ()=>{
-        render(
-            <MemoryRouter
-                initialEntries={["favourites"]}
-                initialIndex={1}>
-                <App/>
-            </MemoryRouter>
-        )
-
-        const FavouriteVideosList = screen.getAllByRole("article")
-
-        expect(FavouriteVideosList.length).toBeGreaterThanOrEqual(0)
-    })
-    test("renders favourite video detail page", () => {
-        render(
-            <MemoryRouter
-                initialEntries={[`/favourites/${mockData.items[1].id.videoId}`]}
-                initialIndex={1}>
-                <App/>
-            </MemoryRouter>
-        )
-        
-        const VideoTitle = screen.getByRole("heading")
-        const VideoDescription = screen.getByRole("paragraph")
-        const FavouriteVideosList = screen.getAllByRole("article")
-
-        expect(VideoTitle).toBeInTheDocument()
-        expect(VideoTitle).toHaveClass("")
-        expect(VideoDescription).toBeInTheDocument()
-        expect(VideoDescription).toHaveClass()
-        expect(FavouriteVideosList.length).toBeGreaterThanOrEqual(1)
-    })
+   
     test("renders 404 page", () => {
         render(
             <MemoryRouter
-                initialEntries={["*"]}>
-                <NotFound/>
+                initialEntries={["/paosidkpasodm"]}>
+                <App/>
             </MemoryRouter>
         )
 
