@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useGlobals } from '../../state/GlobalProvider';
 import SearchForm from '../SearchForm';
 
 const Navbar = () => {
-
+  const history = useHistory()
   const { toggleTheme, user, updateUser } = useGlobals();
   const [dropDown, setDropDown] = useState(false)
   
@@ -16,7 +16,7 @@ const Navbar = () => {
     <>
       <nav className="flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 dark:bg-indigo-900 dark:bg-opacity-60">
         <div className="flex justify-between md:w-4/12 m-auto md:m-0">
-          <div className="m-auto">
+          <div className="m-auto cursor-pointer" onClick={() => history.push("/favourites")}>
             <svg
               className="w-6 h-6"
               fill="none"
