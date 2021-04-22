@@ -41,7 +41,7 @@ describe("Video Page", () => {
             class="flex justify-between md:w-4/12 m-auto md:m-0"
           >
             <div
-              class="m-auto"
+              class="m-auto cursor-pointer"
             >
               <svg
                 class="w-6 h-6"
@@ -93,7 +93,7 @@ describe("Video Page", () => {
               </svg>
             </div>
             <div
-              class="m-auto border-2 rounded-full border-white bg-white hover:bg-blue-200"
+              class="m-auto border-2 rounded-full border-white cursor-pointer bg-white hover:bg-blue-200"
             >
               <svg
                 class="flex w-6 md:w-10"
@@ -111,6 +111,9 @@ describe("Video Page", () => {
               </svg>
             </div>
           </div>
+          <div
+            class="hidden"
+          />
         </nav>
       `)
     } )
