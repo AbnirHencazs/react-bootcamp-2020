@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import reducer from './globalReducer'
 import { SET_THEME, SET_SEARCH_QUERY, SET_USER, UNSET_USER } from '../utils/constants'
 
@@ -25,9 +25,17 @@ const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, {
         theme:"light", 
         searchQuery: "",
-        user:{
-        }
+        user: JSON.parse(localStorage.getItem("userInfo"))
     })
+
+    useEffect(() => {
+        if(state.user === null){
+            localStorage.setItem("userInfo", JSON.stringify({}))
+            return
+        }
+        localStorage.setItem("userInfo", JSON.stringify(state.user))
+    },[state.user])
+
     const submitSearchQuery = (input) => {
         dispatch( { type: SET_SEARCH_QUERY, payload: input } )
     }
