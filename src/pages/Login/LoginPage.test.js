@@ -6,9 +6,16 @@ describe('Login page', () => {
   test('renders initially', () => {
     render(<LoginPage />);
 
-    const loginHeading = screen.getByTitle('heading', {
+    const loginHeading = screen.getByRole('heading', {
       name: /Ingresa a tu cuenta/i,
     });
     expect(loginHeading).toBeInTheDocument();
+    expect(loginHeading).toHaveClass("text-xl font-bold leading-thight");
+
+    expect(screen.getByText("Email")).toBeInTheDocument()
+    expect(screen.getByText("Contraseña")).toBeInTheDocument()
+    expect(screen.getByRole('button', {
+      name:/Ingresar/i
+    })).toBeInTheDocument()
   });
 });
