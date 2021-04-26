@@ -1,8 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom'
-import useGapi from '../../hooks/useGapi';
 import { useGlobals } from '../../state/GlobalProvider'
-import { REMOVE_FAVOURITE } from '../../utils/constants';
 
 const VideoPlayer = ({videoId, video, isLoading}) =>{
   
@@ -30,10 +27,8 @@ const VideoPlayer = ({videoId, video, isLoading}) =>{
                 { isLoading ? "Cargando":"" }
                 { !isLoading && checkVideo(video) ? 
                     <div>
-                        <h1 className="text-lg font-bold">
-                            <p className="no-underline hover:underline text-gray-800 text-opacity-80 dark:text-white">
-                                {video.snippet.title}
-                            </p>
+                        <h1 className="text-lg font-bold no-underline hover:underline text-gray-800 text-opacity-80 dark:text-white">
+                            {video.snippet.title}
                         </h1>
                         <p className="text-gray-800 text-opacity-80 dark:text-white">
                             {
