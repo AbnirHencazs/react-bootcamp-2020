@@ -1,7 +1,6 @@
 import React from 'react';
 import VideoPlayer from '../../components/VideoPlayer';
 import { useParams } from 'react-router-dom'
-import useGapi from '../../hooks/useGapi'
 import RelatedVideos from '../../components/RelatedVideos'
 import Navbar from '../../components/Navbar';
 import { useGlobals } from '../../state/GlobalProvider';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Routes } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Protected from '../Protected'
 import HomePage from '../../pages/Home';
 import VideoPage from '../../pages/Video'
@@ -8,7 +8,6 @@ import NotFound from '../../pages/NotFound';
 import LoginPage from '../../pages/Login';
 import FavouritePage from '../../pages/Favourite';
 import FavouriteVideoPage from '../../pages/FavouriteVideo'
-import GlobalProvider from '../../state/GlobalProvider'
 
 if (process.env.NODE_ENV === 'development') {
 

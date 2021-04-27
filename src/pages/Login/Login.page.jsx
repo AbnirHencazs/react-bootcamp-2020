@@ -23,7 +23,7 @@ const LoginPage = () => {
                 <h1 className="text-xl font-bold leading-thight">Ingresa a tu cuenta</h1>
             </div>
             <div className="rounded flex p-2">
-                <img src="https://avatars.githubusercontent.com/u/30054827?s=200&v=4" className="block h-32  w-auto"/>
+                <img src="https://avatars.githubusercontent.com/u/30054827?s=200&v=4" className="block h-32  w-auto" alt="Wizeline logo"/>
             </div>
 
             <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">

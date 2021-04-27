@@ -1,6 +1,5 @@
 import React from 'react';
-import useGapi from '../../hooks/useGapi'
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
 const RelatedVideos = ({videos, isLoading}) => {
