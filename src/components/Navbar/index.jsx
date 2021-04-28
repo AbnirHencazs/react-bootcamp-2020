@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useGlobals } from '../../state/GlobalProvider';
 import SearchForm from '../SearchForm';
+import SideMenu from '../SideMenu';
 
 const Navbar = () => {
-  const history = useHistory()
+  
   const { toggleTheme, user, updateUser } = useGlobals();
   const [dropDown, setDropDown] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   
   const handleLogout = () => {
     updateUser()
@@ -14,9 +16,10 @@ const Navbar = () => {
   }
   return (
     <>
+      <SideMenu open={isOpen} handleClose={() => setIsOpen(false)}/>
       <nav className="flex flex-column w-100 justify-center md:justify-between px-5 py-5 bg-blue-300 dark:bg-indigo-900 dark:bg-opacity-60">
         <div className="flex justify-between md:w-4/12 m-auto md:m-0">
-          <div className="m-auto cursor-pointer" onClick={() => history.push("/favourites")}>
+          <div className="m-auto cursor-pointer" onClick={() => setIsOpen(true)}>
             <svg
               className="w-6 h-6"
               fill="none"
