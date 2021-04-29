@@ -1,6 +1,7 @@
 import React from 'react'
 import { screen, render } from '@testing-library/react';
 import SearchForm from './index';
+import userEvent from '@testing-library/user-event';
 
 describe( 'SearchForm', () => {
     test("render initially", () => {
