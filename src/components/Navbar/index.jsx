@@ -58,7 +58,7 @@ const Navbar = () => {
           </div>
           <div onClick={() => {setDropDown(!dropDown)}} className="m-auto border-2 rounded-full border-white cursor-pointer bg-white hover:bg-blue-200">
             {
-              user.authenticated ?
+              user && user.authenticated ?
               <img className="rounded-full h-10 w-10 cursor-pointer" src={user.avatarUrl} alt="user avatar"/>
               :
               <svg
@@ -82,7 +82,7 @@ const Navbar = () => {
           dropDown ?
           <div className="fixed right-0 mt-5 mr-20 bg-white shadow rounded">
             {
-              (user.authenticated) ?
+              (user && user.authenticated) ?
               <div className="dropdown inline-block relative">
                 <div className=" py-2 px-4 rounded inline-flex items-center">
                   {`Welcome, ${user.name}`}

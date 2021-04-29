@@ -5,7 +5,7 @@ import { useGlobals } from '../../state/GlobalProvider';
 const Protected = (props) => {
   const { user } = useGlobals();
 
-  return user.authenticated ? <Route {...props} /> : <Redirect to="/login" />;
+  return user && user.authenticated ? <Route {...props} /> : <Redirect to="/login" />;
 };
 
 export default Protected;

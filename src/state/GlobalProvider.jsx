@@ -77,7 +77,7 @@ const GlobalProvider = ({ children }) => {
     }
 
     const updateUser = (user) => {
-        if(state.user.authenticated){
+        if( state.user === null || state.user.authenticated){
             dispatch({
                 type:UNSET_USER,
                 payload: {
