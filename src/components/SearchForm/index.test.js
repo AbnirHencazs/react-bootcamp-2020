@@ -17,4 +17,12 @@ describe( 'SearchForm', () => {
             />
         `)
     })
+
+    test("input value is written",() => {
+        render( <SearchForm/>)
+
+        const searchInput = screen.getByPlaceholderText(/Search/i)
+        userEvent.type(searchInput, 'Wizeline')
+        expect(searchInput).toHaveValue('Wizeline')
+    })
 } );
