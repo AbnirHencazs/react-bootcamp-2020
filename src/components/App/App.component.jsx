@@ -1,9 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
+import Protected from '../Protected'
 import HomePage from '../../pages/Home';
 import VideoPage from '../../pages/Video'
 import VideoPlayer from '../VideoPlayer';
-import GlobalProvider from '../../state/GlobalProvider'
+import NotFound from '../../pages/NotFound';
+import LoginPage from '../../pages/Login';
+import FavouritePage from '../../pages/Favourite';
+import FavouriteVideoPage from '../../pages/FavouriteVideo'
 
 if (process.env.NODE_ENV === 'development') {
 
@@ -17,8 +21,7 @@ if (process.env.NODE_ENV === 'development') {
 function App() {
 
   return (
-    <GlobalProvider>
-      <BrowserRouter>
+    
         <Switch>
           <Route exact path="/">
             <HomePage className="dark:bg-gray-900"/>
@@ -26,9 +29,16 @@ function App() {
           <Route exact path="/video/:videoId" component={VideoPlayer}>
             <VideoPage/>
           </Route>
+          <Protected exact path="/favourites" component={FavouritePage}/>
+          <Protected exact path="/favourites/:favouriteId" component={FavouriteVideoPage}/>
+          <Route exact path="/login">
+            <LoginPage/>
+          </Route>
+          <Route path="*"> 
+            <NotFound />
+          </Route>
         </Switch>
-      </BrowserRouter>
-    </GlobalProvider>
+      
   );
 }
 

@@ -41,7 +41,7 @@ describe("Video Page", () => {
             class="flex justify-between md:w-4/12 m-auto md:m-0"
           >
             <div
-              class="m-auto"
+              class="m-auto cursor-pointer"
             >
               <svg
                 class="w-6 h-6"
@@ -61,7 +61,9 @@ describe("Video Page", () => {
             <div
               class="m-auto"
             >
-              <form>
+              <form
+                aria-label="form"
+              >
                 <input
                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                   placeholder="Search"
@@ -93,7 +95,7 @@ describe("Video Page", () => {
               </svg>
             </div>
             <div
-              class="m-auto border-2 rounded-full border-white bg-white hover:bg-blue-200"
+              class="m-auto border-2 rounded-full border-white cursor-pointer bg-white hover:bg-blue-200"
             >
               <svg
                 class="flex w-6 md:w-10"
@@ -111,6 +113,9 @@ describe("Video Page", () => {
               </svg>
             </div>
           </div>
+          <div
+            class="hidden"
+          />
         </nav>
       `)
     } )
