@@ -1,5 +1,6 @@
 {
   "name": "react-certification-2020",
+  "homepage": "/mocktube",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
