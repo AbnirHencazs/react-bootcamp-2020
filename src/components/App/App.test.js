@@ -3,6 +3,8 @@ import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import App from './index'
 import mockData from '../../youtube-videos-mock'
+import LoginPage from '../../pages/Login';
+import NotFound from '../../pages/NotFound';
 
 describe("App component", () => {
     beforeAll( () => {
@@ -32,5 +34,39 @@ describe("App component", () => {
         
         expect( VideoCardListComponent ).toBeInTheDocument()
         expect( NavbarComponent ).toBeInTheDocument()
+    })
+    test("renders Login Page", () => {
+        render(
+            <MemoryRouter
+                initialEntries={["/login"]}>
+                <App/>
+            </MemoryRouter>
+        )
+        const heading = screen.getByRole("heading",{
+            name: /Ingresa a tu cuenta/i
+        })
+        const loginForm = screen.getByRole("form")
+        const loginButton = screen.getByRole("button",{
+            name: /Ingresar/i
+        })
+
+        expect(heading).toBeInTheDocument()
+        expect(loginForm).toBeInTheDocument()
+        expect(loginButton).toBeInTheDocument()
+    })
+   
+    test("renders 404 page", () => {
+        render(
+            <MemoryRouter
+                initialEntries={["/paosidkpasodm"]}>
+                <App/>
+            </MemoryRouter>
+        )
+
+        const NotFoundTitle = screen.getByRole("heading", {
+            name: /Not all who wander are lost, but i'm afraid you are/i
+        })
+
+        expect(NotFoundTitle).toBeInTheDocument()
     })
 })

@@ -1,14 +1,7 @@
 import React from 'react';
 import VideoCard from '../VideoCard';
-import { useHistory } from 'react-router-dom'
 
-const VideoCardList = ({videos, channel}) => {
-
-  const history = useHistory()
-
-  const handleClick = (video) => {
-    history.push(`/video/${video.id.videoId}`)
-  }
+const VideoCardList = ({videos, channel, handleClick}) => {
 
   return (
     <div className="container py-12 mx-auto px-4 md:px-12" data-testid="VideoCardList">

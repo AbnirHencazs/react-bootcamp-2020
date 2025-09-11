@@ -1,4 +1,4 @@
-import { SET_SEARCH_QUERY, SET_THEME } from '../utils/constants';
+import { ADD_FAVOURITE, REMOVE_FAVOURITE, SET_SEARCH_QUERY, SET_THEME, SET_USER, UNSET_USER } from '../utils/constants';
 
 export default function globalReducer(state, action) {
   switch (action.type) {
@@ -7,6 +7,14 @@ export default function globalReducer(state, action) {
       break;
     case SET_SEARCH_QUERY:
       return { ...state, searchQuery: action.payload };
+    case SET_USER:
+      return { ...state, user:{ ...action.payload, authenticated: true } }
+    case UNSET_USER:
+      return { ...state, user: { ...action.payload, authenticated: false } }
+    case ADD_FAVOURITE:
+      return { ...state, favourites:[ ...state.favourites, action.payload]}
+    case REMOVE_FAVOURITE:
+      return{ ...state, favourites: state.favourites.filter(video => video !== action.payload) }
     default:
       return { ...state };
       break;
